@@ -7,6 +7,7 @@ export const RADIO_CONFIG = {
   zenoLink: 'https://zeno.fm/radio/radio-sebastian/',
   email: 'radiosebastian565@gmail.com',
   instagram: 'https://www.instagram.com/radiosebastian_sk',
+  logo: '/logo.png',
   credit: 'https://petrvurm.cz/?utm_source=radio_sebastian&utm_medium=web&utm_campaign=footer_credit',
   creditName: 'Petr Vurm',
 };

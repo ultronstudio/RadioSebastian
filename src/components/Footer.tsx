@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <h2 className="text-6xl md:text-9xl font-display font-bold tracking-tighter leading-none">
+            <h2 className="text-5xl sm:text-6xl md:text-9xl font-display font-bold tracking-tighter leading-none">
               BUĎME V<br />
               <span className="text-brand-accent">KONTAKTE.</span>
             </h2>
@@ -50,8 +50,15 @@ export const Footer: React.FC = () => {
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start">
-            <span className="text-xl font-display font-bold tracking-tighter">RÁDIO SEBASTIÁN</span>
-            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/20 mt-1">© 2026 Všetky práva vyhradené</span>
+            <a href="/" className="flex items-center gap-4 mb-4" aria-label="Rádio Sebastián Domov">
+              <img 
+                src={RADIO_CONFIG.logo} 
+                alt="Rádio Sebastián Logo" 
+                className="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                referrerPolicy="no-referrer"
+              />
+            </a>
+            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/20">© 2026 Všetky práva vyhradené</span>
           </div>
 
           <div className="flex items-center gap-8">
@@ -60,13 +67,10 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-[10px] font-mono uppercase tracking-widest text-white/20 hover:text-white transition-colors flex items-center gap-2"
+              aria-label={`Web vytvoril ${RADIO_CONFIG.creditName}`}
             >
-              Web vytvoril {RADIO_CONFIG.creditName} <ExternalLink size={12} />
+              Web vytvoril {RADIO_CONFIG.creditName}
             </a>
-            <div className="w-1 h-1 rounded-full bg-white/10" />
-            <span className="text-[10px] font-mono uppercase tracking-widest text-white/20">
-              Slovensko, EU
-            </span>
           </div>
         </div>
       </div>

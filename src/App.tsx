@@ -37,16 +37,16 @@ export default function App() {
     <div className="min-h-screen selection:bg-brand-accent selection:text-brand-bg">
       <Header />
 
-      <main>
+      <main id="main-content">
         {/* Hero Section */}
-        <section id="live" className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden">
+        <section id="live" className="relative min-h-screen flex flex-col justify-center pt-20 overflow-hidden" aria-labelledby="hero-heading">
           {/* Background Typography */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden" aria-hidden="true">
             <motion.h1 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 0.03, scale: 1 }}
               transition={{ duration: 2 }}
-              className="text-[30vw] font-display font-black tracking-tighter leading-none whitespace-nowrap"
+              className="text-[40vw] md:text-[30vw] font-display font-black tracking-tighter leading-none whitespace-nowrap"
             >
               SEBASTIÁN
             </motion.h1>
@@ -64,7 +64,7 @@ export default function App() {
                   <div className="h-px w-12 bg-brand-accent" />
                   <span className="text-[12px] font-mono uppercase tracking-[0.5em] text-brand-accent font-bold">Práve vysielame</span>
                 </div>
-                <h2 className="text-7xl md:text-[10rem] font-display font-bold tracking-tighter leading-[0.85] uppercase">
+                <h2 id="hero-heading" className="text-5xl sm:text-7xl md:text-[10rem] font-display font-bold tracking-tighter leading-[0.85] uppercase">
                   ZVUK<br />
                   <span className="text-stroke">DNEŠKA.</span>
                 </h2>
@@ -85,13 +85,14 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
               className="lg:col-span-5"
+              aria-label="Prehrávač rádia"
             >
               <Player metadata={metadata} />
             </motion.div>
           </div>
 
           {/* Bottom Rail */}
-          <div className="absolute bottom-12 left-0 w-full px-6 md:px-12 flex justify-center items-end">
+          <div className="absolute bottom-12 left-0 w-full px-6 md:px-12 flex justify-center items-end" aria-hidden="true">
             <motion.div 
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}

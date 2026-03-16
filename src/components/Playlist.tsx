@@ -13,18 +13,20 @@ export const Playlist: React.FC = () => {
   );
 
   return (
-    <section id="playlist" className="py-24 px-6 md:px-12 max-w-[1800px] mx-auto">
+    <section id="playlist" className="py-24 px-6 md:px-12 max-w-[1800px] mx-auto" aria-labelledby="playlist-heading">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
         <div className="space-y-4">
           <span className="text-[12px] font-mono uppercase tracking-[0.4em] text-brand-accent font-bold">V rotácii</span>
-          <h2 className="text-5xl md:text-8xl font-display font-bold tracking-tighter leading-none">
+          <h2 id="playlist-heading" className="text-4xl sm:text-5xl md:text-8xl font-display font-bold tracking-tighter leading-none">
             PLAY<span className="text-stroke">LIST</span>
           </h2>
         </div>
 
         <div className="relative w-full md:w-80">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={18} />
+          <label htmlFor="track-search" className="sr-only">Hľadať skladby</label>
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={18} aria-hidden="true" />
           <input
+            id="track-search"
             type="text"
             placeholder="Hľadať skladby..."
             value={search}

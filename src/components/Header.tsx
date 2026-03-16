@@ -1,8 +1,13 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { RADIO_CONFIG } from '../constants';
+import { Menu, X } from 'lucide-react';
 
 export const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navItems = ['Vysielanie', 'Playlist', 'O nás', 'Kontakt'];
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-6 py-8 md:px-12 pointer-events-none">
       <div className="max-w-[1800px] mx-auto flex justify-between items-center">
@@ -11,20 +16,24 @@ export const Header: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           className="pointer-events-auto"
         >
-          <a href="/" className="group flex flex-col">
-            <span className="text-2xl font-display font-bold tracking-tighter leading-none group-hover:text-brand-accent transition-colors">
-              RÁDIO<br />SEBASTIÁN
-            </span>
-            <span className="text-[10px] font-mono tracking-[0.3em] opacity-40 uppercase mt-1">Digital Broadcast</span>
+          <a href="/" className="group flex items-center gap-4" aria-label="Rádio Sebastián Domov">
+            <img 
+              src={RADIO_CONFIG.logo} 
+              alt="Rádio Sebastián Logo" 
+              className="w-12 h-12 md:w-16 md:h-16 object-contain group-hover:scale-105 transition-transform duration-300"
+              referrerPolicy="no-referrer"
+            />
           </a>
         </motion.div>
 
-        <nav className="hidden md:flex items-center gap-12 pointer-events-auto">
-          {['Vysielanie', 'Playlist', 'O nás', 'Kontakt'].map((item) => (
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-12 pointer-events-auto" aria-label="Hlavná navigácia">
+          {navItems.map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase().replace(' ', '-')}`}
+              href={`#${item === 'O nás' ? 'o-nas' : item.toLowerCase().replace(' ', '-')}`}
               className="text-[11px] font-mono uppercase tracking-[0.2em] text-white/40 hover:text-brand-accent transition-colors relative group"
+              aria-label={`Prejsť na sekciu ${item}`}
             >
               {item}
               <span className="absolute -bottom-2 left-0 w-0 h-px bg-brand-accent transition-all duration-300 group-hover:w-full" />
@@ -32,21 +41,65 @@ export const Header: React.FC = () => {
           ))}
         </nav>
 
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="pointer-events-auto"
-        >
-          <a
-            href={RADIO_CONFIG.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-2 rounded-full border border-white/10 text-[10px] font-mono uppercase tracking-widest hover:bg-white hover:text-brand-bg transition-all duration-300"
+        <div className="flex items-center gap-4 pointer-events-auto">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="hidden sm:block"
           >
-            Instagram
-          </a>
-        </motion.div>
+            <a
+              href={RADIO_CONFIG.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2 rounded-full border border-white/10 text-[10px] font-mono uppercase tracking-widest hover:bg-white hover:text-brand-bg transition-all duration-300"
+            >
+              Instagram
+            </a>
+          </motion.div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 text-white/60 hover:text-brand-accent transition-colors"
+            aria-label={isMenuOpen ? "Zatvoriť menu" : "Otvoriť menu"}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 w-full bg-brand-bg/95 backdrop-blur-xl border-b border-white/5 px-6 py-12 pointer-events-auto md:hidden"
+          >
+            <nav className="flex flex-col items-center gap-8">
+              {navItems.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item === 'O nás' ? 'o-nas' : item.toLowerCase().replace(' ', '-')}`}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-2xl font-display font-bold tracking-tighter hover:text-brand-accent transition-colors"
+                >
+                  {item}
+                </a>
+              ))}
+              <a
+                href={RADIO_CONFIG.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 px-8 py-3 rounded-full bg-brand-accent text-brand-bg text-[12px] font-mono uppercase tracking-widest font-bold"
+              >
+                Sledujte nás na Instagrame
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

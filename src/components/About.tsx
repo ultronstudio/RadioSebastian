@@ -1,25 +1,25 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ABOUT_TEXT, FEATURED_CONTENT } from '../constants';
+import { ABOUT_TEXT, FEATURED_CONTENT, RADIO_CONFIG } from '../constants';
 import { PlayCircle, Podcast, ArrowUpRight } from 'lucide-react';
 
 export const About: React.FC = () => {
   return (
-    <section id="o-nás" className="py-24 px-6 md:px-12 bg-white/2 text-white overflow-hidden">
+    <section id="o-nas" className="py-24 px-6 md:px-12 bg-white/2 text-white overflow-hidden" aria-labelledby="about-heading">
       <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
         
         {/* Left Column: Story */}
         <div className="lg:col-span-7 space-y-12">
           <div className="space-y-6">
             <span className="text-[12px] font-mono uppercase tracking-[0.4em] text-brand-accent font-bold">Identita</span>
-            <h2 className="text-5xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9]">
+            <h2 id="about-heading" className="text-4xl sm:text-5xl md:text-8xl font-display font-bold tracking-tighter leading-[0.9]">
               HUDBA JE NAŠA<br />
               <span className="text-stroke">DNA.</span>
             </h2>
           </div>
           
           <div className="max-w-xl">
-            <p className="text-xl md:text-2xl text-white/60 font-light leading-relaxed whitespace-pre-line">
+            <p className="text-lg md:text-2xl text-white/60 font-light leading-relaxed whitespace-pre-line">
               {ABOUT_TEXT}
             </p>
           </div>
@@ -78,8 +78,14 @@ export const About: React.FC = () => {
           </div>
 
           <div className="p-8 rounded-3xl border border-dashed border-white/10 flex flex-col items-center text-center space-y-4">
-            <div className="w-12 h-12 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent">
-              <Radio size={24} />
+            <div className="w-16 h-16 flex items-center justify-center">
+              <img 
+                src={RADIO_CONFIG.logo} 
+                alt="" 
+                className="w-full h-full object-contain opacity-50"
+                aria-hidden="true"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <p className="text-sm text-white/40 font-mono uppercase tracking-widest">
               Sme súčasťou slovenskej<br />hudobnej scény
@@ -90,5 +96,3 @@ export const About: React.FC = () => {
     </section>
   );
 };
-
-import { Radio } from 'lucide-react';

@@ -13,6 +13,9 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-brand-bg text-white antialiased selection:bg-brand-accent selection:text-brand-bg;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";

@@ -38,13 +38,14 @@ export const Player: React.FC<PlayerProps> = ({ metadata }) => {
         {/* Play Button Circle */}
         <button
           onClick={togglePlay}
+          aria-label={isPlaying ? "Pozastaviť prehrávanie" : "Spustiť prehrávanie"}
           className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center rounded-full bg-white text-brand-bg hover:scale-105 transition-transform duration-300 active:scale-95 shadow-[0_0_50px_rgba(255,255,255,0.15)]"
         >
           {isPlaying ? <Pause size={40} fill="currentColor" /> : <Play size={40} className="ml-2" fill="currentColor" />}
           
           {/* Equalizer Animation */}
           {isPlaying && (
-            <div className="absolute -bottom-2 flex gap-1 items-end h-8">
+            <div className="absolute -bottom-2 flex gap-1 items-end h-8" aria-hidden="true">
               {[1, 2, 3, 4].map((i) => (
                 <motion.div
                   key={i}
@@ -66,6 +67,7 @@ export const Player: React.FC<PlayerProps> = ({ metadata }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="text-3xl md:text-5xl font-display font-bold tracking-tight leading-tight"
+                aria-live="polite"
               >
                 {metadata.title || 'Rádio Sebastián'}
               </motion.h2>
@@ -77,6 +79,7 @@ export const Player: React.FC<PlayerProps> = ({ metadata }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="text-lg md:text-xl text-white/40 font-light"
+                aria-live="polite"
               >
                 {metadata.artist || 'Hráme tie najväčšie hity'}
               </motion.p>
@@ -85,7 +88,11 @@ export const Player: React.FC<PlayerProps> = ({ metadata }) => {
 
           <div className="flex items-center justify-center md:justify-start pt-2">
             <div className="flex items-center gap-4 group/vol w-full max-w-[240px]">
-              <button onClick={toggleMute} className="text-white/20 hover:text-brand-accent transition-colors shrink-0">
+              <button 
+                onClick={toggleMute} 
+                className="text-white/20 hover:text-brand-accent transition-colors shrink-0"
+                aria-label={isMuted ? "Zrušiť stlmenie" : "Stlmiť zvuk"}
+              >
                 {isMuted || volume === 0 ? <VolumeX size={18} /> : <Volume2 size={18} />}
               </button>
               <div className="relative flex-1 h-1 bg-white/5 rounded-full overflow-hidden">
@@ -102,9 +109,10 @@ export const Player: React.FC<PlayerProps> = ({ metadata }) => {
                   value={volume}
                   onChange={(e) => setVolume(parseFloat(e.target.value))}
                   className="absolute inset-0 w-full opacity-0 cursor-pointer"
+                  aria-label="Nastavenie hlasitosti"
                 />
               </div>
-              <span className="text-[10px] font-mono text-white/20 w-10 text-right">{Math.round(volume * 100)}%</span>
+              <span className="text-[10px] font-mono text-white/20 w-10 text-right" aria-hidden="true">{Math.round(volume * 100)}%</span>
             </div>
           </div>
         </div>
