@@ -66,7 +66,7 @@ export const Player: React.FC<PlayerProps> = ({ metadata }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-3xl md:text-5xl font-display font-bold tracking-tight leading-tight"
+                className="text-3xl md:text-5xl font-display font-bold tracking-tight leading-tight line-clamp-2"
                 aria-live="polite"
               >
                 {metadata.title || 'Rádio Sebastián'}
@@ -78,7 +78,7 @@ export const Player: React.FC<PlayerProps> = ({ metadata }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-lg md:text-xl text-white/40 font-light"
+                className="text-lg md:text-xl text-white/40 font-light line-clamp-1"
                 aria-live="polite"
               >
                 {metadata.artist || 'Hráme tie najväčšie hity'}

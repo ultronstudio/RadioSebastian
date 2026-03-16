@@ -3,18 +3,25 @@ import { motion, AnimatePresence } from 'motion/react';
 import { RADIO_CONFIG } from '../constants';
 import { Menu, X } from 'lucide-react';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  scrolled?: boolean;
+}
+
+export const Header: React.FC<HeaderProps> = ({ scrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = ['Vysielanie', 'Playlist', 'O nás', 'Kontakt'];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 px-6 py-8 md:px-12 pointer-events-none">
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      scrolled 
+        ? 'bg-brand-bg/80 backdrop-blur-xl py-4' 
+        : 'py-8'
+    } px-6 md:px-12`}>
       <div className="max-w-[1800px] mx-auto flex justify-between items-center">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="pointer-events-auto"
         >
           <a href="/" className="group flex items-center gap-4" aria-label="Rádio Sebastián Domov">
             <img 
@@ -27,7 +34,7 @@ export const Header: React.FC = () => {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-12 pointer-events-auto" aria-label="Hlavná navigácia">
+        <nav className="hidden md:flex items-center gap-12" aria-label="Hlavná navigácia">
           {navItems.map((item) => (
             <a
               key={item}
@@ -41,7 +48,7 @@ export const Header: React.FC = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4 pointer-events-auto">
+        <div className="flex items-center gap-4">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -75,7 +82,7 @@ export const Header: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-brand-bg/95 backdrop-blur-xl border-b border-white/5 px-6 py-12 pointer-events-auto md:hidden"
+            className="absolute top-full left-0 w-full bg-brand-bg/95 backdrop-blur-xl border-b border-white/5 px-6 py-12 md:hidden"
           >
             <nav className="flex flex-col items-center gap-8">
               {navItems.map((item) => (

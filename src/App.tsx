@@ -10,6 +10,16 @@ import { RadioMetadata } from './types';
 
 export default function App() {
   const [metadata, setMetadata] = useState<RadioMetadata>({ streamTitle: 'Rádio Sebastián' });
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const eventSource = new EventSource(RADIO_CONFIG.metadataUrl);
@@ -35,7 +45,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen selection:bg-brand-accent selection:text-brand-bg">
-      <Header />
+      <Header scrolled={scrolled} />
 
       <main id="main-content">
         {/* Hero Section */}
@@ -92,16 +102,27 @@ export default function App() {
           </div>
 
           {/* Bottom Rail */}
-          <div className="absolute bottom-12 left-0 w-full px-6 md:px-12 flex justify-center items-end" aria-hidden="true">
-            <motion.div 
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="flex flex-col items-center gap-2"
-            >
-              <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">Posunúť</span>
-              <div className="w-px h-12 bg-gradient-to-b from-brand-accent to-transparent" />
-            </motion.div>
-          </div>
+          <AnimatePresence>
+            {!scrolled && (
+              <div className="absolute bottom-12 left-0 w-full px-6 md:px-12 flex justify-center items-end" aria-hidden="true">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="flex flex-col items-center gap-2"
+                  >
+                    <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">Posunúť</span>
+                    <div className="w-px h-12 bg-gradient-to-b from-brand-accent to-transparent" />
+                  </motion.div>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
         </section>
 
         <Playlist />
