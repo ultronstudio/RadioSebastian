@@ -13,6 +13,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    document.title = 'Rádio Sebastián | Moderné online rádio';
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
