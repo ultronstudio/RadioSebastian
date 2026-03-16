@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Instagram, Mail, ExternalLink, ArrowRight } from 'lucide-react';
 import { RADIO_CONFIG } from '../constants';
+import logo from '../assets/logo.png';
 
 export const Footer: React.FC = () => {
   return (
@@ -52,7 +53,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-start">
             <a href="/" className="flex items-center gap-4 mb-4" aria-label="Rádio Sebastián Domov">
               <img 
-                src={RADIO_CONFIG.logo} 
+                src={logo} 
                 alt="Rádio Sebastián Logo" 
                 className="w-16 h-16 object-contain opacity-80 hover:opacity-100 transition-opacity"
                 referrerPolicy="no-referrer"

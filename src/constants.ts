@@ -1,5 +1,4 @@
 import { Track, FeaturedItem } from './types';
-
 export const RADIO_CONFIG = {
   name: 'Rádio Sebastián',
   streamUrl: 'http://stream.zeno.fm/ueoubhhgiortv',

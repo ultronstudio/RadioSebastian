@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { RADIO_CONFIG } from '../constants';
 import { Menu, X } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 interface HeaderProps {
   scrolled?: boolean;
@@ -25,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ scrolled }) => {
         >
           <a href="/" className="group flex items-center gap-4" aria-label="Rádio Sebastián Domov">
             <img 
-              src={RADIO_CONFIG.logo} 
+              src={logo} 
               alt="Rádio Sebastián Logo" 
               className="w-12 h-12 md:w-16 md:h-16 object-contain group-hover:scale-105 transition-transform duration-300"
               referrerPolicy="no-referrer"
