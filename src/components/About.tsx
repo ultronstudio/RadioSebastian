@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ABOUT_TEXT, FEATURED_CONTENT, RADIO_CONFIG } from '../constants';
 import { PlayCircle, Podcast, ArrowUpRight } from 'lucide-react';
-import logo from '../assets/logo.png';
 
 export const About: React.FC = () => {
   return (
@@ -81,7 +80,7 @@ export const About: React.FC = () => {
           <div className="p-8 rounded-3xl border border-dashed border-white/10 flex flex-col items-center text-center space-y-4">
             <div className="w-16 h-16 flex items-center justify-center">
               <img 
-                src={logo} 
+                src={RADIO_CONFIG.logo} 
                 alt="" 
                 className="w-full h-full object-contain opacity-50"
                 aria-hidden="true"

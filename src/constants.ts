@@ -6,7 +6,7 @@ export const RADIO_CONFIG = {
   zenoLink: 'https://zeno.fm/radio/radio-sebastian/',
   email: 'radiosebastian565@gmail.com',
   instagram: 'https://www.instagram.com/radiosebastian_sk',
-  logo: '/logo.png',
+  logo: 'https://lh3.googleusercontent.com/sitesv/APaQ0SRlyYJ9ZDIhARM8bJkvB9-5QehJgRVxhkISK_U0qhgAQhKXzAPuOmp96vX_VnRErWaEuifm1bbRO8POy2FeaYGmFLxkpQNlCYqNzOX2TBZYk119E1epfH3d7VY1qQrlR5HHIlJfWIs5aPInl5CF1oYsRktXs_gRUgKMpzP-gu4faN3Ki1eN0BLOe5g=w16383',
   credit: 'https://petrvurm.cz/?utm_source=radio_sebastian&utm_medium=web&utm_campaign=footer_credit',
   creditName: 'Petr Vurm',
 };
